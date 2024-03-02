@@ -1,12 +1,33 @@
-import React from 'react';
-import { Autocomplete } from '@react-google-maps/api';
-import { AppBar, Toolbar, Typography, InputBase, Box } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import React, { useState } from 'react';
+import { AppBar, Toolbar, Typography, Box } from '@material-ui/core';
 
 import useStyles from './HeaderStyles';
+import { Coordinates } from '../App/App';
+import Navigation from '../Navigation/Navigation';
 
-const Header = () => {
+type HeaderProps = {
+  setCoordinates: (coordinates: Coordinates) => void;
+};
+
+const Header: React.FC<HeaderProps> = ({ setCoordinates }) => {
   const classes = useStyles();
+  const [autocomplete, setAutocomplete] =
+    useState<google.maps.places.Autocomplete | null>(null);
+
+  const onLoad = (autocomplete: google.maps.places.Autocomplete | null) =>
+    setAutocomplete(autocomplete);
+
+  const onPlaceChanged = () => {
+    if (autocomplete === undefined || autocomplete === null) return;
+    const place = autocomplete.getPlace();
+    if (!place.geometry || !place.geometry.location) return;
+
+    const lat = place.geometry.location.lat();
+    const lng = place.geometry.location.lng();
+
+    setCoordinates({ lat, lng });
+  };
+
   return (
     <header>
       <AppBar position='static'>
@@ -16,20 +37,11 @@ const Header = () => {
           </Typography>
           <Box display='flex'>
             <Typography variant='h6'>Explore new places</Typography>
-            {/*<Autocomplete>*/}
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder='Search...'
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </div>
-            {/*</Autocomplete>*/}
+            <Navigation
+              onLoad={onLoad}
+              onPlaceChanged={onPlaceChanged}
+              classes={classes}
+            />
           </Box>
         </Toolbar>
       </AppBar>
