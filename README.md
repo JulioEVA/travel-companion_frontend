@@ -39,10 +39,11 @@ To get started with Travel Companion SPA, follow these steps:
 - **TypeScript**: A statically typed superset of JavaScript that adds optional types
 - **RapidAPI**: An API marketplace that allows you to connect to thousands of APIs
 - **HTML/CSS**: Standard technologies for building web pages
-
-## Contributing
-
-We welcome contributions to the Travel Companion SPA! Please see our `CONTRIBUTING.md` for more details.
+- **JavaScript**: Standard for web pages
+- **MapsAPI**: Google API for all Maps related uses
+- **PlacesAPI**: Google API to get different location names
+- **ESLint**: To follow best practicing while building this app.
+- **MaterialUI**: Used to build the GUI.
 
 ## Contact
 
