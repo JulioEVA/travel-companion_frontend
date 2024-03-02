@@ -9,7 +9,7 @@ type HeaderProps = {
   setCoordinates: (coordinates: Coordinates) => void;
 };
 
-const Header: React.FC<HeaderProps> = ({ setCoordinates }) => {
+const Header: React.FC<HeaderProps> = ({ onLoad, onPlaceChanged }) => {
   const classes = useStyles();
   const [autocomplete, setAutocomplete] =
     useState<google.maps.places.Autocomplete | null>(null);
