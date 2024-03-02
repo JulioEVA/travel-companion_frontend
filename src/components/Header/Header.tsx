@@ -3,7 +3,6 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 
 import useStyles from './HeaderStyles';
-import { Coordinates } from '../App/App';
 import Navigation from '../Navigation/Navigation';
 
 type HeaderProps = {
@@ -13,22 +12,6 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = ({ onLoad, onPlaceChanged }) => {
   const classes = useStyles();
-  const [autocomplete, setAutocomplete] =
-    useState<google.maps.places.Autocomplete | null>(null);
-
-  const onLoad = (autocomplete: google.maps.places.Autocomplete | null) =>
-    setAutocomplete(autocomplete);
-
-  const onPlaceChanged = () => {
-    if (autocomplete === undefined || autocomplete === null) return;
-    const place = autocomplete.getPlace();
-    if (!place.geometry || !place.geometry.location) return;
-
-    const lat = place.geometry.location.lat();
-    const lng = place.geometry.location.lng();
-
-    setCoordinates({ lat, lng });
-  };
 
   return (
     <header>

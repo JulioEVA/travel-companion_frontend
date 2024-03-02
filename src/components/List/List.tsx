@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import { useState, useEffect, createRef } from 'react';
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
@@ -110,7 +111,7 @@ const List: React.FC<ListProps> = ({
               <MenuItem value={0}>All</MenuItem>
               <MenuItem value={3}>Above 3.0</MenuItem>
               <MenuItem value={4}>Above 4.0</MenuItem>
-              <MenuItem value={4.5}>Above 4..5</MenuItem>
+              <MenuItem value={4.5}>Above 4.5</MenuItem>
             </Select>
           </FormControl>
 
