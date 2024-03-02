@@ -16,7 +16,20 @@ import Rating from '@material-ui/lab/Rating';
 import useStyles from './PlaceDetailsStyles';
 import { Place } from '../List/List';
 
-const PlaceDetails: React.FC<{ place: Place }> = ({ place }) => {
+type PlaceDetailsProps = {
+  place: Place;
+  selected: boolean;
+  refProp: React.RefObject<HTMLDivElement>;
+};
+
+const PlaceDetails: React.FC<PlaceDetailsProps> = ({
+  place,
+  selected,
+  refProp,
+}) => {
+  if (selected)
+    refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
   const classes = useStyles();
 
   return (
@@ -34,6 +47,12 @@ const PlaceDetails: React.FC<{ place: Place }> = ({ place }) => {
         <Typography gutterBottom variant='h5'>
           {place.name}
         </Typography>
+        <Box display='flex' justifyContent='space-between'>
+          <Rating value={Number(place.rating)} readOnly />
+          <Typography component='legend'>
+            {place.num_reviews} review{place.num_reviews > 1 && 's'}
+          </Typography>
+        </Box>
         <Box display='flex' justifyContent='space-between'>
           <Typography variant='subtitle1'>Price</Typography>
           <Typography gutterBottom variant='subtitle1'>
@@ -54,13 +73,13 @@ const PlaceDetails: React.FC<{ place: Place }> = ({ place }) => {
             </Typography>
           </Box>
         ))}
-        {place?.cuisine?.map(({ name }: { name: string }) => (
+        {place?.cuisine?.map(({ name }) => (
           <Chip key={name} size='small' label={name} className={classes.chip} />
         ))}
         {place?.address && (
           <Typography
             gutterBottom
-            variant='subtitle2'
+            variant='body2'
             color='textSecondary'
             className={classes.subtitle}
           >
