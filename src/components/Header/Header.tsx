@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Box } from '@material-ui/core';
+import React from 'react';
+import { AppBar, Toolbar, Typography } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 
 import useStyles from './HeaderStyles';
 import { Coordinates } from '../App/App';
