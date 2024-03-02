@@ -10,7 +10,8 @@ export const getPlacesData = async (
       `https://travel-advisor.p.rapidapi.com/${type}/list-in-boundary?bl_latitude=${sw.lat}&bl_longitude=${sw.lng}&tr_longitude=${ne.lng}&tr_latitude=${ne.lat}`,
       {
         headers: {
-          'X-RapidAPI-Key': import.meta.env.VITE_RAPIDAPI_KEY,
+          'X-RapidAPI-Key':
+            '2d4132a0d2msh46335e84430a537p16def1jsne49b0896c994',
           'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com',
         },
       }
@@ -19,6 +20,6 @@ export const getPlacesData = async (
     const { data } = await response.json();
     return data;
   } catch (error) {
-    alert(error);
+    console.log(error);
   }
 };
