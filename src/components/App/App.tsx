@@ -6,6 +6,7 @@ import Header from '../Header/Header';
 import List, { Place } from '../List/List';
 import Map from '../Map/Map';
 import Footer from '../Footer/Footer';
+import Main from '../Main/Main';
 
 export type Coordinates = {
   lat: number;
@@ -69,28 +70,30 @@ const App = () => {
     <>
       <CssBaseline />
       <Header setCoordinates={setCoordinates} />
-      <Grid container spacing={3} style={{ width: '100%' }}>
-        <Grid item xs={12} md={4}>
-          <List
-            places={filteredPlaces.length ? filteredPlaces : places}
-            childClicked={childClicked}
-            isLoading={isLoading}
-            type={type}
-            setType={setType}
-            rating={rating}
-            setRating={setRating}
-          />
+      <Main>
+        <Grid container spacing={3} style={{ width: '100%' }}>
+          <Grid item xs={12} md={4}>
+            <List
+              places={filteredPlaces.length ? filteredPlaces : places}
+              childClicked={childClicked}
+              isLoading={isLoading}
+              type={type}
+              setType={setType}
+              rating={rating}
+              setRating={setRating}
+            />
+          </Grid>
+          <Grid item xs={12} md={8}>
+            <Map
+              setCoordinates={setCoordinates}
+              setBounds={setBounds}
+              coordinates={coordinates as Coordinates}
+              places={filteredPlaces.length ? filteredPlaces : places}
+              setChildClicked={setChildClicked}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={8}>
-          <Map
-            setCoordinates={setCoordinates}
-            setBounds={setBounds}
-            coordinates={coordinates as Coordinates}
-            places={filteredPlaces.length ? filteredPlaces : places}
-            setChildClicked={setChildClicked}
-          />
-        </Grid>
-      </Grid>
+      </Main>
       <Footer />
     </>
   );
