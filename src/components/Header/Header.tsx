@@ -6,7 +6,8 @@ import { Coordinates } from '../App/App';
 import Navigation from '../Navigation/Navigation';
 
 type HeaderProps = {
-  setCoordinates: (coordinates: Coordinates) => void;
+  onLoad: (autocomplete: google.maps.places.Autocomplete | null) => void;
+  onPlaceChanged: () => void;
 };
 
 const Header: React.FC<HeaderProps> = ({ onLoad, onPlaceChanged }) => {
