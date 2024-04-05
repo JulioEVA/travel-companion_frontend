@@ -32,7 +32,7 @@ const Map: React.FC<MapProps> = ({
     <div className={classes.mapContainer}>
       <GoogleMapReact
         bootstrapURLKeys={{
-          key: 'AIzaSyC7ugksykKBwXE47s6ef3l8zczwSVI8mGM',
+          key: 'AIzaSyAMOclBoa7qsstpYZA1o7htNdvpHjRw4-o',
         }}
         center={coordinates}
         defaultCenter={coordinates}
